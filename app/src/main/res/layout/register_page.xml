@@ -5,35 +5,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg1"
-    tools:context=".Phone_Number_Verification_Page">
+    tools:context=".Register_page">
 
     <TextView
         android:id="@+id/enter_phone_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="175dp"
+        android:layout_marginTop="100dp"
         android:layout_marginEnd="100dp"
-        android:text="@string/enter_your_phone_number_to_get_started"
+        android:text="@string/registration"
         android:textColor="@color/white"
-        android:textSize="16sp"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/mobile_number_input"
+        android:id="@+id/email_input"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_marginTop="84dp"
         android:layout_marginEnd="50dp"
         android:autofillHints="phone"
-        android:drawableStart="@drawable/phone"
+        android:drawableStart="@drawable/email"
         android:drawablePadding="10dp"
         android:hint="@string/mobile_number"
-        android:inputType="phone"
-        android:maxLength="10"
+        android:inputType="textEmailAddress"
         android:textColorHint="#888888"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
@@ -41,19 +41,49 @@
         app:layout_constraintTop_toBottomOf="@+id/enter_phone_text" />
 
     <Button
-        android:id="@+id/mobileNumber_page_next_button"
+        android:id="@+id/Register_page_button"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="50dp"
-        android:layout_marginBottom="50dp"
+        android:background="#CBCBCB"
         android:text="@string/next"
         android:textColor="@color/black"
         android:textSize="17sp"
-        android:background="#CBCBCB"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registrationPassword" />
+
+    <EditText
+        android:id="@+id/registrationPassword"
+        android:layout_width="250dp"
+        android:drawableStart="@drawable/password"
+        android:drawablePadding="10dp"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:layout_marginTop="60dp"
+        android:textColor="#C8C8C8"
+        android:ems="10"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email_input" />
+
+    <TextView
+        android:id="@+id/alreadyHaveAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="60dp"
+        android:text="Already have an account"
+        android:textColor="#2F0C66"
+        android:textSize="17sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mobile_number_input" />
-
+        app:layout_constraintTop_toBottomOf="@+id/Register_page_button" />
 </androidx.constraintlayout.widget.ConstraintLayout>

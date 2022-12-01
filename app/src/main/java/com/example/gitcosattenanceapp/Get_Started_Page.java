@@ -15,6 +15,6 @@ public class Get_Started_Page extends AppCompatActivity {
     }
 
     public void Go_To_mobile_verification_page(View view) {
-        startActivity(new Intent(Get_Started_Page.this,Phone_Number_Verification_Page.class));
+        startActivity(new Intent(Get_Started_Page.this, Register_page.class));
     }
 }

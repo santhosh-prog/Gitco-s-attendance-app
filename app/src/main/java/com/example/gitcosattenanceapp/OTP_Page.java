@@ -37,7 +37,7 @@ public class OTP_Page extends AppCompatActivity {
         otp_submit_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(OTP_Page.this,Registration_page.class));
+                startActivity(new Intent(OTP_Page.this, Enquiry_Page.class));
             }
         });
 

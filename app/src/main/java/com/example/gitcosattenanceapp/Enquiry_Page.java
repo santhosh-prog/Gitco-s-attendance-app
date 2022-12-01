@@ -9,7 +9,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class Registration_page extends AppCompatActivity {
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+public class Enquiry_Page extends AppCompatActivity {
 
     EditText organizationName_editText;
     EditText adminName_editText;
@@ -17,11 +20,13 @@ public class Registration_page extends AppCompatActivity {
     EditText total_employee_editText;
     Button admin_register_button;
     String organizationName,adminName,emailID, total_employee;
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.registration_page);
+        setContentView(R.layout.enquiry_page);
+        mAuth=FirebaseAuth.getInstance();
 
         initViews();
     }
@@ -56,7 +61,17 @@ public class Registration_page extends AppCompatActivity {
         if(organizationName.isEmpty()||adminName.isEmpty()||emailID.isEmpty()||total_employee.isEmpty()){
             Toast.makeText(this, "Please enter all the details", Toast.LENGTH_SHORT).show();
         }else{
-            startActivity(new Intent(Registration_page.this,Admin_Login.class));
+            startActivity(new Intent(Enquiry_Page.this,Admin_Login.class));
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        FirebaseUser user=mAuth.getCurrentUser();
+        if(user==null){
+            startActivity(new Intent(Enquiry_Page.this,Login_Activity.class));
         }
     }
 }
