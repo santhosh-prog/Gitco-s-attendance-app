@@ -62,16 +62,8 @@ public class Enquiry_Page extends AppCompatActivity {
             Toast.makeText(this, "Please enter all the details", Toast.LENGTH_SHORT).show();
         }else{
             startActivity(new Intent(Enquiry_Page.this,Admin_Login.class));
+            finish();
         }
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        FirebaseUser user=mAuth.getCurrentUser();
-        if(user==null){
-            startActivity(new Intent(Enquiry_Page.this,Login_Activity.class));
-        }
-    }
 }

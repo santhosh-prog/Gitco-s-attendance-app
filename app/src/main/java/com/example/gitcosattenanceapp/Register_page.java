@@ -44,6 +44,7 @@ public class Register_page extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Register_page.this,Login_Activity.class));
+                finish();
             }
         });
 
@@ -60,12 +61,15 @@ public class Register_page extends AppCompatActivity {
         emailId_Input = EmailID.getText().toString();
         password_input= password.getText().toString();
         if(emailId_Input.isEmpty()){
-            Toast.makeText(this, "please enter your email ID", Toast.LENGTH_LONG).show();
+            EmailID.setError("enter email id to register");
+            EmailID.requestFocus();
         }else if(password_input.isEmpty()){
-            Toast.makeText(this, "please enter your password", Toast.LENGTH_LONG).show();
+            password.setError("must enter a password");
+            password.requestFocus();
         }
         else if(password_input.length()<6){
-            Toast.makeText(this, "password must contain minimum 6 character", Toast.LENGTH_LONG).show();
+            password.setError("password must contain at least 6 characters");
+            password.requestFocus();
         }else{
             mAuth.createUserWithEmailAndPassword(emailId_Input,password_input).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
@@ -73,6 +77,7 @@ public class Register_page extends AppCompatActivity {
                     if(task.isSuccessful()){
                         Toast.makeText(Register_page.this,"register successful",Toast.LENGTH_LONG).show();
                         startActivity(new Intent(Register_page.this,Enquiry_Page.class));
+                        finish();
                     }else{
                         Toast.makeText(Register_page.this,"register not successful",Toast.LENGTH_LONG).show();
                     }

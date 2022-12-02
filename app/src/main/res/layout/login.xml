@@ -72,7 +72,7 @@
         app:layout_constraintTop_toBottomOf="@+id/login_page_email_input" />
 
     <TextView
-        android:id="@+id/dontHaveAccount"
+        android:id="@+id/dontHaveAnAccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
@@ -81,10 +81,20 @@
         android:text="Dont have an account ? Register"
         android:textColor="#2F0C66"
         android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_page_button" />
+
+    <TextView
+        android:id="@+id/forgotPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Forgot password"
+        android:textColor="#2F0C66"
+        android:textSize="17sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_page_button"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/dontHaveAnAccount" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

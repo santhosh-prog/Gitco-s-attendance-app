@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -18,11 +19,13 @@ import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarItemView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class Admin_Login extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
-
+    FirebaseAuth mAuth;
     Admin_Home_fragment admin_home_fragment=new Admin_Home_fragment();
     Admin_Notification_fragment adminNotificationFragment=new Admin_Notification_fragment();
     Admin_Requests_fragment admin_requests_fragment=new Admin_Requests_fragment();
@@ -32,7 +35,7 @@ public class Admin_Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.admin_login);
-
+        mAuth=FirebaseAuth.getInstance();
         initViews();
 
     }
@@ -60,6 +63,16 @@ public class Admin_Login extends AppCompatActivity {
             }
             return false;
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        FirebaseUser user=mAuth.getCurrentUser();
+        if(user==null){
+            startActivity(new Intent(Admin_Login.this,Login_Activity.class));
+        }
     }
 
 }
