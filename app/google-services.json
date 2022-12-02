@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "179001549745",
+    "project_id": "gitco-s-attenance-app",
+    "storage_bucket": "gitco-s-attenance-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:179001549745:android:b200f64ded86123f85d390",
+        "android_client_info": {
+          "package_name": "com.example.gitcosattenanceapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "179001549745-6jbmmnb9dfrnv4u12uujql00msomtsju.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHopBzTMWqBaAjYfLRaBmXTnl9LxbVTsw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "179001549745-6jbmmnb9dfrnv4u12uujql00msomtsju.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
