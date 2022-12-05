@@ -15,6 +15,13 @@
         android:theme="@style/Theme.GitcosAttenanceApp"
         tools:targetApi="31">
         <activity
+            android:name=".Shop_logged_in"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".Login_Activity_Shop"
             android:exported="false">
             <meta-data
