@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg1"
+    tools:context=".Employee_Logged_in">
+
+    <FrameLayout
+        android:id="@+id/employee_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_above="@+id/employee_pg_btm_navbar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </FrameLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/employee_pg_btm_navbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#ffff"
+        app:itemIconTint="#320E68"
+        app:itemTextColor="#2EB3BF"
+        app:layout_constraintBottom_toBottomOf="@+id/employee_container"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/employee_bottom_nav_bar" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

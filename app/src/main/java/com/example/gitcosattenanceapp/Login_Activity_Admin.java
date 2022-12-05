@@ -17,12 +17,12 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class Login_Activity extends AppCompatActivity {
+public class Login_Activity_Admin extends AppCompatActivity {
 
     EditText email_login_editText;
     EditText password_login_editText;
     Button login_Button;
-    TextView dontHaveAccount,forgot_Password;
+    TextView dontHaveAccount,forgot_Password,employee_login,shop_login;
 
     FirebaseAuth mAuth;
 
@@ -30,7 +30,7 @@ public class Login_Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login);
+        setContentView(R.layout.login_activity_admin);
 
         mAuth=FirebaseAuth.getInstance();
         email_login_editText=findViewById(R.id.login_page_email_input);
@@ -38,18 +38,31 @@ public class Login_Activity extends AppCompatActivity {
         login_Button=findViewById(R.id.login_page_button);
         dontHaveAccount=findViewById(R.id.dontHaveAnAccount);
         forgot_Password=findViewById(R.id.forgotPassword);
+        employee_login=findViewById(R.id.admin_lg_Employee_lg);
+        shop_login=findViewById(R.id.admin_lg_to_shop_lg);
 
         forgot_Password.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Login_Activity.this,Forgot_Password.class));
+                startActivity(new Intent(Login_Activity_Admin.this,Forgot_Password.class));
             }
         });
 
         dontHaveAccount.setOnClickListener(v -> {
-            startActivity(new Intent(Login_Activity.this,Register_page.class));
+            startActivity(new Intent(Login_Activity_Admin.this,Register_page.class));
             finish();
         });
+
+        employee_login.setOnClickListener(v -> {
+            startActivity(new Intent(Login_Activity_Admin.this,Login_Activity_Employee.class));
+            finish();
+        });
+
+        shop_login.setOnClickListener(v -> {
+            startActivity(new Intent(Login_Activity_Admin.this,Login_Activity_Shop.class));
+            finish();
+        });
+       // });
 
         login_Button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,11 +91,11 @@ public class Login_Activity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
-                        Toast.makeText(Login_Activity.this,"Login successful",Toast.LENGTH_LONG).show();
-                        startActivity(new Intent(Login_Activity.this,Admin_Login.class));
+                        Toast.makeText(Login_Activity_Admin.this,"Login successful",Toast.LENGTH_LONG).show();
+                        startActivity(new Intent(Login_Activity_Admin.this, Admin_Logged_in.class));
                         finish();
                     }else{
-                        Toast.makeText(Login_Activity.this,"Login not successful",Toast.LENGTH_LONG).show();
+                        Toast.makeText(Login_Activity_Admin.this,"Login not successful",Toast.LENGTH_LONG).show();
                     }
                 }
             });

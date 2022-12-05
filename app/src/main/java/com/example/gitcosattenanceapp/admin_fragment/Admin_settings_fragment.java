@@ -12,20 +12,13 @@ import android.view.*;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.example.gitcosattenanceapp.Admin_Login;
-import com.example.gitcosattenanceapp.Login_Activity;
+import com.example.gitcosattenanceapp.Login_Activity_Admin;
 import com.example.gitcosattenanceapp.R;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class Admin_settings_fragment extends Fragment {
     FirebaseAuth mAuth;
     Button logout_button;
-
-//    @Override
-//    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-//                             Bundle savedInstanceState) {
-//
-//        return inflater.inflate(R.layout.admin_settings_fragment, container, false);
 
     @Nullable
     @Override
@@ -37,7 +30,7 @@ public class Admin_settings_fragment extends Fragment {
             @Override
             public void onClick(View v) {
             mAuth.signOut();
-            startActivity(new Intent(getActivity(),Login_Activity.class));
+            startActivity(new Intent(getActivity(), Login_Activity_Admin.class));
             }
         });
 

@@ -11,8 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.gitcosattenanceapp.Admin_Login;
-import com.example.gitcosattenanceapp.Login_Activity;
+import com.example.gitcosattenanceapp.Login_Activity_Admin;
 import com.example.gitcosattenanceapp.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -36,7 +35,7 @@ public class Admin_Home_fragment extends Fragment {
         FirebaseUser user=mAuth.getCurrentUser();
 
         if(user==null){
-            startActivity(new Intent(getActivity(), Login_Activity.class));
+            startActivity(new Intent(getActivity(), Login_Activity_Admin.class));
         }
 
     }

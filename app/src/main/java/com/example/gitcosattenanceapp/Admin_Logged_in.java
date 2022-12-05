@@ -1,28 +1,20 @@
 package com.example.gitcosattenanceapp;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 
 import com.example.gitcosattenanceapp.admin_fragment.Admin_Home_fragment;
 import com.example.gitcosattenanceapp.admin_fragment.Admin_Notification_fragment;
 import com.example.gitcosattenanceapp.admin_fragment.Admin_Requests_fragment;
 import com.example.gitcosattenanceapp.admin_fragment.Admin_settings_fragment;
-import com.example.gitcosattenanceapp.databinding.AdminLoginBinding;
 import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationBarItemView;
-import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class Admin_Login extends AppCompatActivity {
+public class Admin_Logged_in extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
     FirebaseAuth mAuth;
@@ -34,7 +26,7 @@ public class Admin_Login extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.admin_login);
+        setContentView(R.layout.admin_logged_in);
         mAuth=FirebaseAuth.getInstance();
         initViews();
 
@@ -71,7 +63,7 @@ public class Admin_Login extends AppCompatActivity {
 
         FirebaseUser user=mAuth.getCurrentUser();
         if(user==null){
-            startActivity(new Intent(Admin_Login.this,Login_Activity.class));
+            startActivity(new Intent(Admin_Logged_in.this, Login_Activity_Admin.class));
         }
     }
 

@@ -43,8 +43,8 @@ public class Register_page extends AppCompatActivity {
         alreadyHaveAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Register_page.this,Login_Activity.class));
-                finish();
+                startActivity(new Intent(Register_page.this, Login_Activity_Admin.class));
+              //  finish();
             }
         });
 

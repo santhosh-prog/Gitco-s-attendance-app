@@ -10,7 +10,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class Enquiry_Page extends AppCompatActivity {
 
@@ -61,7 +60,7 @@ public class Enquiry_Page extends AppCompatActivity {
         if(organizationName.isEmpty()||adminName.isEmpty()||emailID.isEmpty()||total_employee.isEmpty()){
             Toast.makeText(this, "Please enter all the details", Toast.LENGTH_SHORT).show();
         }else{
-            startActivity(new Intent(Enquiry_Page.this,Admin_Login.class));
+            startActivity(new Intent(Enquiry_Page.this, Admin_Logged_in.class));
             finish();
         }
     }
