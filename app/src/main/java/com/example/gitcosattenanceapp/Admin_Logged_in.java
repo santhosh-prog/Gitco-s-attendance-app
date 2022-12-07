@@ -17,7 +17,6 @@ import com.google.firebase.auth.FirebaseUser;
 public class Admin_Logged_in extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
-    FirebaseAuth mAuth;
     Admin_Home_fragment admin_home_fragment=new Admin_Home_fragment();
     Admin_Notification_fragment adminNotificationFragment=new Admin_Notification_fragment();
     Admin_Requests_fragment admin_requests_fragment=new Admin_Requests_fragment();
@@ -27,7 +26,6 @@ public class Admin_Logged_in extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.admin_logged_in);
-        mAuth=FirebaseAuth.getInstance();
         initViews();
 
     }
@@ -35,9 +33,9 @@ public class Admin_Logged_in extends AppCompatActivity {
     private void initViews() {
         bottomNavigationView=findViewById(R.id.admin_page_bottom_nav);
         getSupportFragmentManager().beginTransaction().replace(R.id.frameContainer,admin_home_fragment).commit();
-        BadgeDrawable badgeDrawable = bottomNavigationView.getOrCreateBadge(R.id.notification);
-        badgeDrawable.setVisible(true);
-        badgeDrawable.setNumber(8);
+//        BadgeDrawable badgeDrawable = bottomNavigationView.getOrCreateBadge(R.id.notification);
+//        badgeDrawable.setVisible(true);
+//        badgeDrawable.setNumber(8);
         bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.home:
@@ -56,15 +54,4 @@ public class Admin_Logged_in extends AppCompatActivity {
             return false;
         });
     }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        FirebaseUser user=mAuth.getCurrentUser();
-        if(user==null){
-            startActivity(new Intent(Admin_Logged_in.this, Login_Activity_Admin.class));
-        }
-    }
-
 }

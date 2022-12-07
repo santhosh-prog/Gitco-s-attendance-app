@@ -4,21 +4,55 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg1"
     tools:context=".admin_fragment.Admin_Notification_fragment">
-
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Admin Notification"
-            android:textSize="20sp"
+        <EditText
+            android:id="@+id/notification_to_post"
+            android:layout_width="350dp"
+            android:layout_height="170dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="38dp"
+            android:background="@color/white"
+            android:hint="Enter Message"
+            android:textColor="@color/black"
+            android:textColorHint="#636363"
+            app:layout_constraintBottom_toTopOf="@+id/post_notification_button"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <Button
+            android:id="@+id/post_notification_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="post notification"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.9"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/notification_to_post" />
+
+        <ListView
+            android:id="@+id/notification_list"
+            android:layout_width="350dp"
+            android:layout_height="400dp"
+            android:layout_marginTop="10dp"
+            android:alpha=".5"
+            android:background="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/post_notification_button" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
 
 </FrameLayout>

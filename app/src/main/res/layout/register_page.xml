@@ -47,7 +47,7 @@
         android:layout_marginStart="50dp"
         android:layout_marginTop="60dp"
         android:layout_marginEnd="50dp"
-        android:background="#CBCBCB"
+        android:background="@drawable/button_background"
         android:text="@string/next"
         android:textColor="@color/black"
         android:textSize="17sp"
