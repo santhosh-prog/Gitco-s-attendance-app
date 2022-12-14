@@ -20,9 +20,8 @@ public class Register_page extends AppCompatActivity {
 
     EditText EmailID;
     EditText password;
-    Button register_button;
+    Button register_button,login;
     String emailId_Input,password_input;
-    TextView alreadyHaveAccount,employee_login,shop_login;
     FirebaseAuth mAuth;
 
     @Override
@@ -38,27 +37,9 @@ public class Register_page extends AppCompatActivity {
         EmailID =findViewById(R.id.email_input);
         password=findViewById(R.id.registrationPassword);
         register_button =findViewById(R.id.Register_page_button);
-        alreadyHaveAccount=findViewById(R.id.alreadyHaveAccount);
-        employee_login=findViewById(R.id.reg_pg_to_emp_lg);
-        shop_login=findViewById(R.id.reg_pg_to_shop_lg);
+        login=findViewById(R.id.bk_to_admin);
 
-        alreadyHaveAccount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Register_page.this, Login_Activity_Admin.class));
-               finish();
-            }
-        });
-
-        employee_login.setOnClickListener(v -> {
-            startActivity(new Intent(Register_page.this,Login_Activity_Employee.class));
-            finish();
-        });
-
-        shop_login.setOnClickListener(v -> {
-                    startActivity(new Intent(Register_page.this, Login_Activity_Shop.class));
-                    finish();
-                });
+        login.setOnClickListener(v -> startActivity(new Intent(Register_page.this,Login_Activity_Admin.class)));
 
         register_button.setOnClickListener(new View.OnClickListener() {
             @Override

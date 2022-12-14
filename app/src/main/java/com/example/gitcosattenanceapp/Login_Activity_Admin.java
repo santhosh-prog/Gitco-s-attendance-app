@@ -4,16 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -23,7 +21,7 @@ public class Login_Activity_Admin extends AppCompatActivity {
 
     EditText email_login_editText;
     EditText password_login_editText;
-    Button login_Button;
+    Button login_Button,signup;
     TextView dontHaveAccount,forgot_Password,employee_login,shop_login;
 
     public FirebaseAuth mAuth;
@@ -38,10 +36,9 @@ public class Login_Activity_Admin extends AppCompatActivity {
         email_login_editText=findViewById(R.id.login_page_email_input);
         password_login_editText=findViewById(R.id.loginPassword);
         login_Button=findViewById(R.id.login_page_button);
-        dontHaveAccount=findViewById(R.id.dontHaveAnAccount);
+        signup=findViewById(R.id.signup);
         forgot_Password=findViewById(R.id.forgotPassword);
-        employee_login=findViewById(R.id.admin_lg_Employee_lg);
-        shop_login=findViewById(R.id.admin_lg_to_shop_lg);
+
 
 
         forgot_Password.setOnClickListener(new View.OnClickListener() {
@@ -51,19 +48,11 @@ public class Login_Activity_Admin extends AppCompatActivity {
             }
         });
 
-        dontHaveAccount.setOnClickListener(v -> {
-            startActivity(new Intent(Login_Activity_Admin.this,Register_page.class));
-            finish();
-        });
-
-        employee_login.setOnClickListener(v -> {
-            startActivity(new Intent(Login_Activity_Admin.this,Login_Activity_Employee.class));
-            finish();
-        });
-
-        shop_login.setOnClickListener(v -> {
-            startActivity(new Intent(Login_Activity_Admin.this,Login_Activity_Shop.class));
-            finish();
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Login_Activity_Admin.this,Register_page.class));
+            }
         });
 
 
@@ -96,9 +85,9 @@ public class Login_Activity_Admin extends AppCompatActivity {
                     if(task.isSuccessful()){
                         Toast.makeText(Login_Activity_Admin.this,"Login successful",Toast.LENGTH_LONG).show();
                         startActivity(new Intent(Login_Activity_Admin.this, Admin_Logged_in.class));
-                        finish();
+                        finishAffinity();
                     }else{
-                        Toast.makeText(Login_Activity_Admin.this,"Login not successful",Toast.LENGTH_LONG).show();
+                        Toast.makeText(Login_Activity_Admin.this,"Invalid password",Toast.LENGTH_LONG).show();
                     }
                 }
             });

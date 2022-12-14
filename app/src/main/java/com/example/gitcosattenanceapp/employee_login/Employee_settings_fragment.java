@@ -11,13 +11,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
+import com.example.gitcosattenanceapp.Admin_Logged_in;
+import com.example.gitcosattenanceapp.Enquiry_Page;
+import com.example.gitcosattenanceapp.HomeActivity;
 import com.example.gitcosattenanceapp.Login_Activity_Admin;
 import com.example.gitcosattenanceapp.Login_Activity_Employee;
 import com.example.gitcosattenanceapp.R;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 
+import java.util.Objects;
 
 public class Employee_settings_fragment extends Fragment {
 
@@ -30,14 +34,15 @@ public class Employee_settings_fragment extends Fragment {
         View view = inflater.inflate(R.layout.employee_settings_fragment, container, false);
         logout_button = view.findViewById(R.id.employee_logout_button);
         mAuth = FirebaseAuth.getInstance();
-        logout_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mAuth.signOut();
-                startActivity(new Intent(getActivity(), Login_Activity_Employee.class));
-            }
+        logout_button.setOnClickListener(v -> {
+            mAuth.signOut();
+            Toast.makeText(getActivity(),"Logout successful",Toast.LENGTH_LONG).show();
+            startActivity(new Intent(getActivity(), HomeActivity.class));
+            requireActivity().finish();
         });
 
         return view;
+
+
     }
 }

@@ -1,18 +1,12 @@
 package com.example.gitcosattenanceapp;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
-
 import com.example.gitcosattenanceapp.admin_fragment.Admin_Home_fragment;
 import com.example.gitcosattenanceapp.admin_fragment.Admin_Notification_fragment;
 import com.example.gitcosattenanceapp.admin_fragment.Admin_Requests_fragment;
 import com.example.gitcosattenanceapp.admin_fragment.Admin_settings_fragment;
-import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class Admin_Logged_in extends AppCompatActivity {
 
@@ -33,9 +27,6 @@ public class Admin_Logged_in extends AppCompatActivity {
     private void initViews() {
         bottomNavigationView=findViewById(R.id.admin_page_bottom_nav);
         getSupportFragmentManager().beginTransaction().replace(R.id.frameContainer,admin_home_fragment).commit();
-//        BadgeDrawable badgeDrawable = bottomNavigationView.getOrCreateBadge(R.id.notification);
-//        badgeDrawable.setVisible(true);
-//        badgeDrawable.setNumber(8);
         bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.home:
@@ -54,4 +45,14 @@ public class Admin_Logged_in extends AppCompatActivity {
             return false;
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finishAffinity();
+    }
+
+
+
+
 }

@@ -24,19 +24,15 @@
         android:id="@+id/get_started_button"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
         android:layout_marginTop="240dp"
-        android:layout_marginEnd="50dp"
         android:layout_marginBottom="51dp"
-        android:background="#CBCBCB"
+        android:background="@drawable/button_background"
         android:text="@string/get_started"
         android:textColor="@color/black"
         android:textSize="17sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/welcome_of_get_started_page"
-        android:onClick="Go_To_mobile_verification_page"/>
+        app:layout_constraintTop_toBottomOf="@+id/welcome_of_get_started_page" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

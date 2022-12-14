@@ -21,7 +21,7 @@ public class Login_Activity_Shop extends AppCompatActivity {
     EditText email_login_editText;
     EditText password_login_editText;
     Button login_Button;
-    TextView forgot_Password,admin_login,employee_login;
+    TextView forgot_Password;
 
     FirebaseAuth mAuth;
 
@@ -34,24 +34,13 @@ public class Login_Activity_Shop extends AppCompatActivity {
         password_login_editText=findViewById(R.id.shop_loginPassword);
         login_Button=findViewById(R.id.shop_login_page_button);
         forgot_Password=findViewById(R.id.shop_forgotPassword);
-        admin_login=findViewById(R.id.shop_lg_to_admin_lg);
-        employee_login=findViewById(R.id.shop_login_to_employee_login);
+
         mAuth=FirebaseAuth.getInstance();
 
         forgot_Password.setOnClickListener(v -> {
             startActivity(new Intent(Login_Activity_Shop.this,Forgot_Password.class));
             finish();
         });
-
-        admin_login.setOnClickListener(v -> {
-            startActivity(new Intent(Login_Activity_Shop.this,Login_Activity_Admin.class));
-            finish();
-        });
-
-        employee_login.setOnClickListener(v -> {
-            startActivity(new Intent(Login_Activity_Shop.this,Login_Activity_Employee.class));
-        });
-
         login_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -11,9 +11,7 @@
         android:id="@+id/admin_lg_top_note"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
         android:layout_marginTop="100dp"
-        android:layout_marginEnd="100dp"
         android:text="ADMIN LOGIN"
         android:textColor="@color/white"
         android:textSize="20sp"
@@ -26,65 +24,47 @@
         android:id="@+id/login_page_email_input"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
         android:layout_marginTop="60dp"
-        android:layout_marginEnd="100dp"
         android:autofillHints="phone"
         android:drawableStart="@drawable/email"
         android:drawablePadding="10dp"
         android:hint="@string/mobile_number"
         android:inputType="textEmailAddress"
         android:textColorHint="#888888"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/admin_lg_top_note"
+        app:layout_constraintStart_toStartOf="@+id/admin_lg_top_note"
         app:layout_constraintTop_toBottomOf="@+id/admin_lg_top_note" />
 
     <Button
         android:id="@+id/login_page_button"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
         android:layout_marginTop="60dp"
-        android:layout_marginEnd="100dp"
-        android:background="#CBCBCB"
+        android:background="@drawable/button_background"
         android:text="Login"
-        android:textColor="@color/black"
+        android:textColor="#2FBDC5"
         android:textSize="17sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginPassword" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/loginPassword"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/loginPassword"
+        app:layout_constraintTop_toBottomOf="@+id/loginPassword"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/loginPassword"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
         android:layout_marginTop="60dp"
-        android:layout_marginEnd="100dp"
         android:drawableStart="@drawable/password"
         android:drawablePadding="10dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
         android:textColor="#C8C8C8"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/login_page_email_input"
+        app:layout_constraintStart_toStartOf="@+id/login_page_email_input"
         app:layout_constraintTop_toBottomOf="@+id/login_page_email_input" />
-
-    <TextView
-        android:id="@+id/dontHaveAnAccount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="100dp"
-        android:text="Dont have an account ? Register"
-        android:textColor="#2F0C66"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/forgotPassword" />
 
     <TextView
         android:id="@+id/forgotPassword"
@@ -92,43 +72,24 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Forgot password"
-        android:textColor="#2F0C66"
+        android:textColor="#ffffff"
         android:textSize="17sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.717"
+        app:layout_constraintEnd_toEndOf="@+id/login_page_button"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_page_button" />
 
-    <TextView
-        android:id="@+id/admin_lg_Employee_lg"
+
+    <Button
+        android:id="@+id/signup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="100dp"
-        android:text="Are you an Employee? Click Here"
-        android:textColor="#2F0C66"
-        android:textSize="12sp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/home_button_background"
+        android:text="sign up"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dontHaveAnAccount" />
-
-    <TextView
-        android:id="@+id/admin_lg_to_shop_lg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="100dp"
-        android:text="Shop Login click here"
-        android:textColor="#2F0C66"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/admin_lg_Employee_lg"
-        app:layout_constraintVertical_bias="0.0" />
-
+        app:layout_constraintStart_toStartOf="@+id/login_page_button"
+        app:layout_constraintTop_toBottomOf="@+id/forgotPassword" />
 </androidx.constraintlayout.widget.ConstraintLayout>

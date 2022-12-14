@@ -7,6 +7,15 @@
     android:background="@drawable/bg1"
     tools:context=".Add_employee">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
     <TextView
         android:id="@+id/register_employee_text"
         android:layout_width="wrap_content"
@@ -147,7 +156,7 @@
         app:layout_constraintTop_toBottomOf="@+id/re_employee_phone_number"
         app:layout_constraintVertical_bias="0.19999999" />
 
-
-
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

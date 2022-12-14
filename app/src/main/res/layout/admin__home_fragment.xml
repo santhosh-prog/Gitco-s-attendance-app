@@ -16,8 +16,8 @@
 
         <Button
             android:id="@+id/select_branch_popup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="125dp"
+            android:layout_height="37dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/button_background"
@@ -27,59 +27,62 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/check_attendance_button"
-        android:layout_width="350dp"
-        android:layout_height="99dp"
-        android:layout_marginStart="100dp"
-        android:background="@drawable/button_background"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="100dp"
-        android:drawableLeft="@drawable/attendance_list"
-        android:drawableRight="@drawable/next_arrow"
-        android:text="Check Attendance"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/select_branch_popup" />
+        <Button
+            android:id="@+id/check_attendance_button"
+            android:layout_width="330dp"
+            android:layout_height="99dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="100dp"
+            android:alpha=".6"
+            android:background="@drawable/button_background"
+            android:drawableLeft="@drawable/attendance_list"
+            android:drawableRight="@drawable/next_arrow"
+            android:text="Check Attendance"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/select_branch_popup" />
 
-    <Button
-        android:id="@+id/add_employee_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="30dp"
-        android:drawableLeft="@drawable/add"
-        android:background="@drawable/button_background"
-        android:text="Add employee"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.9"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/employee_search_view"
-        app:layout_constraintVertical_bias="0.0" />
+        <Button
+            android:id="@+id/add_employee_button"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="30dp"
+            android:alpha=".6"
+            android:background="@drawable/button_background"
+            android:drawableLeft="@drawable/add"
+            android:text="Add employee"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/employee_search_view"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/employee_search_view"
+            app:layout_constraintVertical_bias="0.0" />
 
-    <SearchView
-        android:id="@+id/employee_search"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/searchview_background"
-        android:queryHint="Search employee"
+        <SearchView
+            android:id="@+id/employee_search"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
 
-        android:iconifiedByDefault="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.516"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/check_attendance_button" />
+            android:background="@drawable/searchview_background"
+            android:iconifiedByDefault="false"
+            android:queryHint="Search employee"
+            app:layout_constraintBottom_toTopOf="@+id/employee_search_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.516"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/check_attendance_button" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/employee_search_view"
             class="androidx.appcompat.app.AlertController$RecycleListView"
             android:layout_width="350dp"
             android:layout_height="360dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="20dp"
             android:alpha=".5"
             android:background="#cbcbcb"
             app:layout_constraintEnd_toEndOf="parent"

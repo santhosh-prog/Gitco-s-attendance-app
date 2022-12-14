@@ -22,7 +22,7 @@ public class Login_Activity_Employee extends AppCompatActivity {
     EditText email_login_editText;
     EditText password_login_editText;
     Button login_Button;
-    TextView forgot_Password,admin_login,shop_login;
+    TextView forgot_Password;
 
     FirebaseAuth mAuth;
 
@@ -36,23 +36,13 @@ public class Login_Activity_Employee extends AppCompatActivity {
         password_login_editText=findViewById(R.id.employee_loginPassword);
         login_Button=findViewById(R.id.employee_login_page_button);
         forgot_Password=findViewById(R.id.employee_forgotPassword);
-        admin_login=findViewById(R.id.employee_lg_to_admin_lg);
-        shop_login=findViewById(R.id.employee_login_to_shop_login);
+
         mAuth=FirebaseAuth.getInstance();
 
         forgot_Password.setOnClickListener(v -> {
             startActivity(new Intent(Login_Activity_Employee.this,Forgot_Password.class));
-            finish();
         });
 
-        admin_login.setOnClickListener(v -> {
-            startActivity(new Intent(Login_Activity_Employee.this,Login_Activity_Admin.class));
-            finish();
-        });
-
-        shop_login.setOnClickListener(v -> {
-            startActivity(new Intent(Login_Activity_Employee.this,Login_Activity_Shop.class));
-        });
 
         login_Button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,7 +75,7 @@ public class Login_Activity_Employee extends AppCompatActivity {
                     if(task.isSuccessful()){
                         Toast.makeText(Login_Activity_Employee.this,"Login successful",Toast.LENGTH_LONG).show();
                         startActivity(new Intent(Login_Activity_Employee.this, Employee_Logged_in.class));
-                        finish();
+                        finishAffinity();
                     }else{
                         Toast.makeText(Login_Activity_Employee.this,"Login not successful",Toast.LENGTH_LONG).show();
                     }
