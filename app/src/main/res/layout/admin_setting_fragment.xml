@@ -1,38 +1,159 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg1"
-    tools:context=".admin_fragment.Admin_settings_fragment">
+    tools:context=".admin_fragment.Admin_settings_fragment"
+    android:orientation="vertical">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
+
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Admin Settings"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/logout_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="289dp"
-            android:text="logout"
-            android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/settingshead"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Settings"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+       <ScrollView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="vertical">
+
+               <ImageView
+                   android:layout_width="100dp"
+                   android:layout_height="100dp"
+                   android:layout_gravity="center"
+                   android:layout_marginTop="10dp"
+                   android:src="@drawable/blankprofile"/>
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="Welcome"
+                   android:layout_gravity="center"
+                   android:textColor="@color/white"
+                   android:textStyle="bold"
+                   android:layout_marginTop="10dp"/>
+
+               <TextView
+                   android:id="@+id/admin_name_display"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="Name"
+                   android:textColor="@color/white"
+                   android:textSize="18dp"
+                   android:layout_marginTop="10dp"
+                   android:textStyle="bold"
+                   android:layout_gravity="center"/>
+
+               <Button
+                   android:id="@+id/change_profile"
+                   android:layout_width="170dp"
+                   android:layout_height="wrap_content"
+                   android:background="@drawable/settings_button_background"
+                   android:drawableLeft="@drawable/edit"
+                   android:drawablePadding="5dp"
+                   android:paddingRight="1dp"
+                   android:textStyle="bold"
+                   android:textSize="16dp"
+                   android:text="change profile"
+                   android:textColor="@color/white"
+                   android:layout_gravity="center"
+                   android:layout_marginTop="10dp"/>
+
+                   <LinearLayout
+                       android:layout_width="330dp"
+                       android:layout_height="wrap_content"
+                       android:layout_marginTop="25dp"
+                       android:layout_gravity="center"
+                       android:orientation="horizontal">
+
+                       <Button
+                           android:id="@+id/edit_own_details"
+                           android:layout_width="match_parent"
+                           android:layout_height="match_parent"
+                           android:background="@drawable/settings_button_background"
+                           android:drawableLeft="@drawable/edit"
+                           android:text="Edit Personal details"
+                           android:textColor="@color/white"
+                           android:textStyle="bold"/>
+                   </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="330dp"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="25dp"
+                   android:layout_gravity="center"
+                   android:orientation="horizontal">
+
+                   <Button
+                       android:id="@+id/edit_employee_details"
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:background="@drawable/settings_button_background"
+                       android:drawableLeft="@drawable/edit"
+                       android:text="Edit Employee details"
+                       android:textColor="@color/white"
+                       android:textStyle="bold"/>
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="330dp"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="25dp"
+                   android:layout_gravity="center"
+                   android:orientation="horizontal">
+
+                   <Button
+                       android:id="@+id/add_branch"
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:background="@drawable/settings_button_background"
+                       android:drawableLeft="@drawable/edit"
+                       android:text="add branch"
+                       android:textColor="@color/white"
+                       android:textStyle="bold"/>
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="330dp"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="25dp"
+                   android:layout_gravity="center"
+                   android:orientation="horizontal">
+
+                   <Button
+                       android:id="@+id/admin_logout_button"
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:background="@drawable/settings_button_background"
+                       android:drawableLeft="@drawable/edit"
+                       android:text="logout"
+                       android:textColor="@color/white"
+                       android:textStyle="bold"/>
+               </LinearLayout>
+           </LinearLayout>
+
+       </ScrollView>
+
+    </LinearLayout>
 
 
 
-</FrameLayout>

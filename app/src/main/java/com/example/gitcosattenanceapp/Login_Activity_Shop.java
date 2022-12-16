@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,11 +18,14 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.Objects;
+
 public class Login_Activity_Shop extends AppCompatActivity {
     EditText email_login_editText;
     EditText password_login_editText;
     Button login_Button;
     TextView forgot_Password;
+    ProgressBar progressBar;
 
     FirebaseAuth mAuth;
 
@@ -34,7 +38,9 @@ public class Login_Activity_Shop extends AppCompatActivity {
         password_login_editText=findViewById(R.id.shop_loginPassword);
         login_Button=findViewById(R.id.shop_login_page_button);
         forgot_Password=findViewById(R.id.shop_forgotPassword);
+        progressBar=findViewById(R.id.shopLoginProgressBar);
 
+        progressBar.setVisibility(View.GONE);
         mAuth=FirebaseAuth.getInstance();
 
         forgot_Password.setOnClickListener(v -> {
@@ -72,7 +78,7 @@ public class Login_Activity_Shop extends AppCompatActivity {
                         startActivity(new Intent(Login_Activity_Shop.this, Shop_logged_in.class));
                         finish();
                     }else{
-                        Toast.makeText(Login_Activity_Shop.this,"Login not successful",Toast.LENGTH_LONG).show();
+                        Toast.makeText(Login_Activity_Shop.this,"Login not successful "+ Objects.requireNonNull(task.getException()).getMessage(),Toast.LENGTH_LONG).show();
                     }
                 }
             });

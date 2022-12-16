@@ -3,11 +3,15 @@ package com.example.gitcosattenanceapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,6 +20,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.Objects;
+
 public class Register_page extends AppCompatActivity {
 
     EditText EmailID;
@@ -23,6 +29,7 @@ public class Register_page extends AppCompatActivity {
     Button register_button,login;
     String emailId_Input,password_input;
     FirebaseAuth mAuth;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,16 +45,22 @@ public class Register_page extends AppCompatActivity {
         password=findViewById(R.id.registrationPassword);
         register_button =findViewById(R.id.Register_page_button);
         login=findViewById(R.id.bk_to_admin);
+        progressBar=findViewById(R.id.register_progressbar);
+        progressBar.setVisibility(View.GONE);
 
         login.setOnClickListener(v -> startActivity(new Intent(Register_page.this,Login_Activity_Admin.class)));
 
         register_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Check();
+
+
+                    Check();
+
             }
         });
     }
+
 
     private void Check() {
 
@@ -64,19 +77,21 @@ public class Register_page extends AppCompatActivity {
             password.setError("password must contain at least 6 characters");
             password.requestFocus();
         }else{
+            progressBar.setVisibility(View.VISIBLE);
             mAuth.createUserWithEmailAndPassword(emailId_Input,password_input).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
-                        Toast.makeText(Register_page.this,"register successful",Toast.LENGTH_LONG).show();
+                        Toast.makeText(Register_page.this,"fill the details",Toast.LENGTH_LONG).show();
                         startActivity(new Intent(Register_page.this,Enquiry_Page.class));
+                        progressBar.setVisibility(View.GONE);
                         finish();
                     }else{
-                        Toast.makeText(Register_page.this,"register not successful",Toast.LENGTH_LONG).show();
+                        Toast.makeText(Register_page.this,"registration not successful"+ Objects.requireNonNull(task.getException()).getMessage(),Toast.LENGTH_LONG).show();
+                        progressBar.setVisibility(View.GONE);
                     }
                 }
             });
         }
-
     }
 }

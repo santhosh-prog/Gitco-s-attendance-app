@@ -1,5 +1,6 @@
 package com.example.gitcosattenanceapp.admin_fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -10,14 +11,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.PopupMenu;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.example.gitcosattenanceapp.Add_employee;
 import com.example.gitcosattenanceapp.Check_attendance;
 import com.example.gitcosattenanceapp.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class Admin_Home_fragment extends Fragment{
     Button select_branch_button,check_attendance,add_employee;
 
+    String email;
+    @SuppressLint("MissingInflatedId")
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -25,6 +31,8 @@ public class Admin_Home_fragment extends Fragment{
         check_attendance=view.findViewById(R.id.check_attendance_button);
         select_branch_button=view.findViewById(R.id.select_branch_popup);
         add_employee=view.findViewById(R.id.add_employee_button);
+
+
 
         select_branch_button.setOnClickListener(v -> {
             PopupMenu popupMenu = new PopupMenu(getActivity(), select_branch_button);
@@ -44,4 +52,5 @@ public class Admin_Home_fragment extends Fragment{
 
         return view;
     }
+
 }

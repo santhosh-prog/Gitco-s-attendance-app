@@ -6,10 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -17,12 +17,15 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.Objects;
+
 public class Login_Activity_Admin extends AppCompatActivity {
 
     EditText email_login_editText;
     EditText password_login_editText;
     Button login_Button,signup;
-    TextView dontHaveAccount,forgot_Password,employee_login,shop_login;
+    TextView noAccount,forgot_Password,employee_login,shop_login;
+    ProgressBar progressBar;
 
     public FirebaseAuth mAuth;
 
@@ -38,8 +41,9 @@ public class Login_Activity_Admin extends AppCompatActivity {
         login_Button=findViewById(R.id.login_page_button);
         signup=findViewById(R.id.signup);
         forgot_Password=findViewById(R.id.forgotPassword);
+        progressBar=findViewById(R.id.adminLoginProgressbar);
 
-
+        progressBar.setVisibility(View.GONE);
 
         forgot_Password.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,19 +56,16 @@ public class Login_Activity_Admin extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Login_Activity_Admin.this,Register_page.class));
+                finish();
             }
         });
 
 
-        login_Button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                LoginUser();
-            }
-        });
+        login_Button.setOnClickListener(v -> LoginUser());
     }
 
     private void LoginUser() {
+
 
         String login_email_input=email_login_editText.getText().toString();
         String login_password_input=password_login_editText.getText().toString();
@@ -79,15 +80,20 @@ public class Login_Activity_Admin extends AppCompatActivity {
            password_login_editText.setError("password must contain 6 characters or more");
            password_login_editText.requestFocus();
         }else{
+            progressBar.setVisibility(View.VISIBLE);
             mAuth.signInWithEmailAndPassword(login_email_input,login_password_input).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
+
                         Toast.makeText(Login_Activity_Admin.this,"Login successful",Toast.LENGTH_LONG).show();
                         startActivity(new Intent(Login_Activity_Admin.this, Admin_Logged_in.class));
+                        progressBar.setVisibility(View.GONE);
+
                         finishAffinity();
                     }else{
-                        Toast.makeText(Login_Activity_Admin.this,"Invalid password",Toast.LENGTH_LONG).show();
+                        Toast.makeText(Login_Activity_Admin.this,"login failed "+ Objects.requireNonNull(task.getException()).getMessage(),Toast.LENGTH_LONG).show();
+                        progressBar.setVisibility(View.GONE);
                     }
                 }
             });

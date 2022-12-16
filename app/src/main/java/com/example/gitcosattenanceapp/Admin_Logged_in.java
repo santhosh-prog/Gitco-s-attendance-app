@@ -1,6 +1,9 @@
 package com.example.gitcosattenanceapp;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.DialogInterface;
 import android.os.Bundle;
 import com.example.gitcosattenanceapp.admin_fragment.Admin_Home_fragment;
 import com.example.gitcosattenanceapp.admin_fragment.Admin_Notification_fragment;
@@ -48,8 +51,25 @@ public class Admin_Logged_in extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        finishAffinity();
+
+        AlertDialog.Builder builder=new AlertDialog.Builder(this);
+        builder.setMessage("are you sure you want to exit ?")
+                .setCancelable(false)
+                        .setPositiveButton("yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Admin_Logged_in.super.onBackPressed();
+                            }
+                        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alertDialog=builder.create();
+        alertDialog.show();
+
+
     }
 
 
