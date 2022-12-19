@@ -4,8 +4,10 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.gitcosattenanceapp.employee_login.Employee_home_fragment;
 import com.example.gitcosattenanceapp.employee_login.Employee_notification_fragment;
@@ -13,11 +15,13 @@ import com.example.gitcosattenanceapp.employee_login.Employee_requests_fragment;
 import com.example.gitcosattenanceapp.employee_login.Employee_settings_fragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class Employee_Logged_in extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
     FirebaseAuth mAuth;
+    FirebaseUser currentUser;
     Employee_home_fragment employee_home_fragment=new Employee_home_fragment();
     Employee_notification_fragment employee_notification_fragment=new Employee_notification_fragment();
     Employee_requests_fragment employee_requests_fragment=new Employee_requests_fragment();
@@ -29,8 +33,42 @@ public class Employee_Logged_in extends AppCompatActivity {
         setContentView(R.layout.employee_logged_in);
         mAuth=FirebaseAuth.getInstance();
 
-        initViews();
 
+        initViews();
+       currentUser=mAuth.getCurrentUser();
+        if(currentUser==null){
+            Toast.makeText(this, "user not available", Toast.LENGTH_SHORT).show();
+        }else{
+            userVerified();
+        }
+
+    }
+
+    private void userVerified() {
+        if(!currentUser.isEmailVerified()){
+            currentUser.sendEmailVerification();
+            showAlertDialog();
+        }
+
+    }
+
+    private void showAlertDialog() {
+        AlertDialog.Builder builder= new AlertDialog.Builder(Employee_Logged_in.this);
+        builder.setTitle("Email not verified");
+        builder.setTitle("please verify your email ID");
+
+        builder.setPositiveButton("Verify", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent= new Intent(Intent.ACTION_MAIN);
+                intent.addCategory(Intent.CATEGORY_APP_EMAIL);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            }
+        });
+        AlertDialog alertDialog=builder.create();
+        alertDialog.setCancelable(false);
+        alertDialog.show();
     }
 
     private void initViews() {

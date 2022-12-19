@@ -30,7 +30,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/rg_employee_email_input"
+        android:id="@+id/e1"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -46,7 +46,7 @@
         app:layout_constraintTop_toBottomOf="@+id/register_employee_text" />
 
     <EditText
-        android:id="@+id/re_employee_registrationPassword"
+        android:id="@+id/e5"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -59,10 +59,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/employee_role" />
+        app:layout_constraintTop_toBottomOf="@+id/e4" />
 
     <EditText
-        android:id="@+id/re_employee_name"
+        android:id="@+id/e3"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -75,10 +75,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/employee_branch" />
+        app:layout_constraintTop_toBottomOf="@+id/e2" />
 
     <EditText
-        android:id="@+id/employee_role"
+        android:id="@+id/e4"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -91,10 +91,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/re_employee_name" />
+        app:layout_constraintTop_toBottomOf="@+id/e3" />
 
     <EditText
-        android:id="@+id/employee_branch"
+        android:id="@+id/e2"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -106,10 +106,10 @@
         android:textColor="#C8C8C8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rg_employee_email_input" />
+        app:layout_constraintTop_toBottomOf="@+id/e1" />
 
     <EditText
-        android:id="@+id/employee_salary"
+        android:id="@+id/e6"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -121,11 +121,11 @@
         android:textColor="#C8C8C8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/re_employee_registrationPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/e5" />
 
 
     <EditText
-        android:id="@+id/re_employee_phone_number"
+        android:id="@+id/e7"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -138,23 +138,32 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/employee_salary" />
+        app:layout_constraintTop_toBottomOf="@+id/e6" />
 
     <Button
-        android:id="@+id/Register_page_button"
+        android:id="@+id/add_employee_by_admin"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_marginEnd="50dp"
-        android:text="@string/next"
+        android:text="Add Employee"
         android:background="@drawable/button_background"
         android:textColor="@color/black"
         android:textSize="17sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/re_employee_phone_number"
+        app:layout_constraintTop_toBottomOf="@+id/e7"
         app:layout_constraintVertical_bias="0.19999999" />
+
+            <ProgressBar
+                android:id="@+id/regEmpPb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

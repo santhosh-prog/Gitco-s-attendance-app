@@ -83,8 +83,8 @@ public class Enquiry_Page extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if(task.isSuccessful()){
-                        currentUser.sendEmailVerification();
-                        Toast.makeText(Enquiry_Page.this,"register successful, please verify your email Id ",Toast.LENGTH_LONG).show();
+
+                        Toast.makeText(Enquiry_Page.this,"register successful ",Toast.LENGTH_LONG).show();
                         startActivity(new Intent(Enquiry_Page.this, Admin_Logged_in.class));
                         progressBar.setVisibility(View.GONE);
                         finish();

@@ -32,6 +32,7 @@ public class Employee_home_fragment extends Fragment {
 
         post_attendance.setOnClickListener(v -> startActivity(new Intent(getActivity(), Post_Attendance_employee.class)));
 
+
         return view;
     }
 }
