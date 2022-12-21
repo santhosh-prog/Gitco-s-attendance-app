@@ -18,5 +18,9 @@ public class ReadWriteAdminDetails {
         assert currentUser != null;
         email = currentUser.getEmail();
     }
+
+    public ReadWriteAdminDetails() {
+
+    }
 }
 

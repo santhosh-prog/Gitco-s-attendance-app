@@ -29,7 +29,6 @@ public class Admin_Logged_in extends AppCompatActivity {
     FirebaseAuth mAuth;
     FirebaseUser currentUser;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

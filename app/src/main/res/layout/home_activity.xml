@@ -52,7 +52,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:text="ADMIN"
+                android:text="OWNER"
                 android:textColor="#2FBDC5"
                 android:textSize="18dp"
                 android:textStyle="bold" />
