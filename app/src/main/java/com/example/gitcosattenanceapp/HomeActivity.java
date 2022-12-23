@@ -25,7 +25,7 @@ public class HomeActivity extends AppCompatActivity {
             admin.setOnClickListener(v -> startActivity(new Intent(HomeActivity.this, Login_Activity_Admin.class)));
         }
         {
-            employee.setOnClickListener(v -> startActivity(new Intent(HomeActivity.this, Login_Activity_Employee.class)));
+            employee.setOnClickListener(v -> startActivity(new Intent(HomeActivity.this, MainActivity.class)));
         }
         {
             shop.setOnClickListener(v -> startActivity(new Intent(HomeActivity.this, Login_Activity_Shop.class)));

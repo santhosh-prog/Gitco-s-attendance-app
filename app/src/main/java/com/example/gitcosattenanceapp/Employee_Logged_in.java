@@ -3,6 +3,7 @@ package com.example.gitcosattenanceapp;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -47,30 +48,31 @@ public class Employee_Logged_in extends AppCompatActivity {
     private void userVerified() {
         if(!currentUser.isEmailVerified()){
             currentUser.sendEmailVerification();
-            showAlertDialog();
+           // showAlertDialog();
         }
 
     }
 
-    private void showAlertDialog() {
-        AlertDialog.Builder builder= new AlertDialog.Builder(Employee_Logged_in.this);
-        builder.setTitle("Email not verified");
-        builder.setTitle("please verify your email ID");
+//    private void showAlertDialog() {
+//        AlertDialog.Builder builder= new AlertDialog.Builder(Employee_Logged_in.this);
+//        builder.setTitle("Email not verified");
+//        builder.setTitle("please verify your email ID");
+//
+//        builder.setPositiveButton("Verify", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                Intent intent= new Intent(Intent.ACTION_MAIN);
+//                intent.addCategory(Intent.CATEGORY_APP_EMAIL);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                startActivity(intent);
+//            }
+//        });
+//        AlertDialog alertDialog=builder.create();
+//        alertDialog.setCancelable(false);
+//        alertDialog.show();
+//    }
 
-        builder.setPositiveButton("Verify", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Intent intent= new Intent(Intent.ACTION_MAIN);
-                intent.addCategory(Intent.CATEGORY_APP_EMAIL);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-            }
-        });
-        AlertDialog alertDialog=builder.create();
-        alertDialog.setCancelable(false);
-        alertDialog.show();
-    }
-
+    @SuppressLint("NonConstantResourceId")
     private void initViews() {
         bottomNavigationView=findViewById(R.id.employee_pg_btm_navbar);
         getSupportFragmentManager().beginTransaction().replace(R.id.employee_container,employee_home_fragment).commit();

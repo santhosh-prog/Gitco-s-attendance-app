@@ -10,7 +10,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.telephony.SmsManager;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -59,13 +58,7 @@ public class Add_employee extends AppCompatActivity {
 
 
 
-addEmployee.setOnClickListener(v -> {
-
-    CheckIsEmpty();
-
-
-
-});
+addEmployee.setOnClickListener(v -> CheckIsEmpty());
 
     }
 
@@ -88,7 +81,7 @@ addEmployee.setOnClickListener(v -> {
                     progressBar.setVisibility(View.GONE);
                     finish();
                 }else{
-                    Toast.makeText(Add_employee.this,"registration not successful "+ Objects.requireNonNull(task.getException()).toString(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(Add_employee.this,"registration not successful "+ Objects.requireNonNull(task.getException()),Toast.LENGTH_LONG).show();
                 }
 
             }
@@ -106,9 +99,6 @@ addEmployee.setOnClickListener(v -> {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     Toast.makeText(Add_employee.this,"Employee Registered successfully",Toast.LENGTH_LONG).show();
-//                    FirebaseUser user=mAuth.getCurrentUser();
-//                    user.sendEmailVerification();
-//                    Toast.makeText(Add_employee.this,"Verification email sent to the registered Email",Toast.LENGTH_LONG).show();
                     progressBar.setVisibility(View.GONE);
                     if(ContextCompat.checkSelfPermission(Add_employee.this, Manifest.permission.SEND_SMS)== PackageManager.PERMISSION_GRANTED) {
                     SendSms();

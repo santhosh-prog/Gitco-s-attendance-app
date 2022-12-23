@@ -1,95 +1,128 @@
 package com.example.gitcosattenanceapp;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
+import com.google.firebase.FirebaseException;
+import com.google.firebase.FirebaseTooManyRequestsException;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthOptions;
+import com.google.firebase.auth.PhoneAuthProvider;
 
-import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 public class Login_Activity_Employee extends AppCompatActivity {
-
-    EditText email_login_editText;
-    EditText password_login_editText;
-    Button login_Button;
-    TextView forgot_Password;
-    ProgressBar progressBar;
+    EditText phone, otp;
+    Button btngenOTP, btnverify;
     FirebaseAuth mAuth;
-
+    String verificationID;
+    ProgressBar bar;
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity_employee);
-
-        email_login_editText=findViewById(R.id.employee_login_page_email_input);
-        password_login_editText=findViewById(R.id.employee_loginPassword);
-        login_Button=findViewById(R.id.employee_login_page_button);
-        forgot_Password=findViewById(R.id.employee_forgotPassword);
-        progressBar=findViewById(R.id.employeeLoginProgressbar);
-
-        progressBar.setVisibility(View.GONE);
-        mAuth=FirebaseAuth.getInstance();
-
-        forgot_Password.setOnClickListener(v -> {
-            startActivity(new Intent(Login_Activity_Employee.this,Forgot_Password.class));
-        });
-
-
-        login_Button.setOnClickListener(new View.OnClickListener() {
+        phone = findViewById(R.id.phone);
+        otp = findViewById(R.id.otp);
+        btngenOTP = findViewById(R.id.btngenerateOTP);
+        btnverify = findViewById(R.id.btnverifyOTP);
+        mAuth = FirebaseAuth.getInstance();
+        bar = findViewById(R.id.bar);
+        btngenOTP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                LoginUser();
+                if (TextUtils.isEmpty(phone.getText().toString())) {
+                    Toast.makeText(Login_Activity_Employee.this, "Enter Valid Phone No.", Toast.LENGTH_SHORT).show();
+                } else {
+                    String number = phone.getText().toString();
+                    bar.setVisibility(View.VISIBLE);
+                    sendverificationcode(number);
+                }
             }
         });
-
-
+        btnverify.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (TextUtils.isEmpty(otp.getText().toString())) {
+                    Toast.makeText(Login_Activity_Employee.this, "Wrong OTP Entered", Toast.LENGTH_SHORT).show();
+                } else
+                    verifycode(otp.getText().toString());
+            }
+        });
     }
 
-    private void LoginUser() {
-        String login_email_input=email_login_editText.getText().toString();
-        String login_password_input=password_login_editText.getText().toString();
-        if(login_email_input.isEmpty()){
-            email_login_editText.setError("Enter your email");
-            email_login_editText.requestFocus();
-        }else if(login_password_input.isEmpty()){
-            password_login_editText.setError("Enter your password");
-            password_login_editText.requestFocus();
+    private void sendverificationcode(String phoneNumber) {
+        PhoneAuthOptions options =
+                PhoneAuthOptions.newBuilder(mAuth)
+                        .setPhoneNumber("+91" + phoneNumber)  // Phone number to verify
+                        .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+                        .setActivity(this)                 // Activity (for callback binding)
+                        .setCallbacks(mCallbacks)          // OnVerificationStateChangedCallbacks
+                        .build();
+        PhoneAuthProvider.verifyPhoneNumber(options);
+    }
+
+    private PhoneAuthProvider.OnVerificationStateChangedCallbacks
+            mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+        @Override
+        public void onVerificationCompleted(@NonNull PhoneAuthCredential credential) {
+            final String code = credential.getSmsCode();
+            if (code != null) {
+                verifycode(code);
+            }
         }
-        else if(login_password_input.length()<6) {
-            password_login_editText.setError("password must contain 6 characters or more");
-            password_login_editText.requestFocus();
-        }else{
-            progressBar.setVisibility(View.VISIBLE);
-            mAuth.signInWithEmailAndPassword(login_email_input,login_password_input).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if(task.isSuccessful()){
-                        Toast.makeText(Login_Activity_Employee.this,"Login successful",Toast.LENGTH_LONG).show();
-                        startActivity(new Intent(Login_Activity_Employee.this, Employee_Logged_in.class));
-                        finishAffinity();
-                        progressBar.setVisibility(View.GONE);
-                    }else{
-                        Toast.makeText(Login_Activity_Employee.this,"Login not successful "+ Objects.requireNonNull(task.getException()).getMessage(),Toast.LENGTH_LONG).show();
-                        progressBar.setVisibility(View.GONE);
+
+        @Override
+        public void onVerificationFailed(@NonNull FirebaseException e) {
+            Toast.makeText(Login_Activity_Employee.this, "Verification Failed", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onCodeSent(@NonNull String s,
+                               @NonNull PhoneAuthProvider.ForceResendingToken token) {
+            super.onCodeSent(s, token);
+            verificationID = s;
+            Toast.makeText(Login_Activity_Employee.this, "Code sent", Toast.LENGTH_SHORT).show();
+            btnverify.setEnabled(true);
+            bar.setVisibility(View.INVISIBLE);
+        }
+    };
+
+    private void verifycode(String Code) {
+        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationID, Code);
+        signinbyCredentials(credential);
+    }
+
+    private void signinbyCredentials(PhoneAuthCredential credential) {
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        firebaseAuth.signInWithCredential(credential)
+                .addOnCompleteListener(new OnCompleteListener() {
+                    @Override
+                    public void onComplete(@NonNull Task task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(Login_Activity_Employee.this, "Login Successfull", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(Login_Activity_Employee.this, Employee_Logged_in.class));
+                        }
+
                     }
-                }
-            });
-        }
+                });
     }
 }
