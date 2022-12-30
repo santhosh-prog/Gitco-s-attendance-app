@@ -20,10 +20,8 @@ public class Employee_home_fragment extends Fragment {
 
     Button post_attendance;
 
-    @SuppressLint("MissingInflatedId")
 
     @Override
-
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.employee_home_fragment , container, false);

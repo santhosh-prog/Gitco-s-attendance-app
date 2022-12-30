@@ -2,10 +2,6 @@ package com.example.gitcosattenanceapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
-import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -15,22 +11,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
 import java.util.Objects;
 
 public class Add_employee extends AppCompatActivity {
 
-    EditText email, password, name, role, branch, salary, phone;
+    EditText  name, role, branch, salary, phone;
     Button addEmployee;
-    String sEmail, sPassword, sName, sRole, sBranch, sSalary, sPhone;
+    String sName, sRole, sBranch, sSalary, sPhone;
     ProgressBar progressBar;
     FirebaseAuth mAuth;
 
@@ -38,8 +31,7 @@ public class Add_employee extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_employee);
-        email = findViewById(R.id.e1);
-        password = findViewById(R.id.e2);
+
         name = findViewById(R.id.e3);
         role = findViewById(R.id.e4);
         branch = findViewById(R.id.e5);
@@ -67,88 +59,54 @@ addEmployee.setOnClickListener(v -> CheckIsEmpty());
         progressBar.setVisibility(View.VISIBLE);
         FirebaseUser currentUser=mAuth.getCurrentUser();
 
-        ReadWriteEmployeeDetails writeEmployeeDetails=new ReadWriteEmployeeDetails(sEmail, sPassword, sName, sRole, sBranch, sSalary, sPhone);
+        assert currentUser != null;
+        String owner=currentUser.getUid();
+
+        ReadWriteEmployeeDetails writeEmployeeDetails=new ReadWriteEmployeeDetails( sName, sRole, sBranch, sSalary, sPhone,owner);
         DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference("Registered Employees");
 
-        assert currentUser != null;
-        databaseReference.child(Objects.requireNonNull(currentUser.getUid())).child(sName).setValue(writeEmployeeDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+        databaseReference.child(sPhone).setValue(writeEmployeeDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
-                    currentUser.sendEmailVerification();
-                   // Toast.makeText(Add_employee.this,"register successful, please verify your email Id ",Toast.LENGTH_LONG).show();
+
+                   Toast.makeText(Add_employee.this,"Employee register successful",Toast.LENGTH_LONG).show();
                     startActivity(new Intent(Add_employee.this, Admin_Logged_in.class));
+
                     progressBar.setVisibility(View.GONE);
                     finish();
                 }else{
                     Toast.makeText(Add_employee.this,"registration not successful "+ Objects.requireNonNull(task.getException()),Toast.LENGTH_LONG).show();
+                    progressBar.setVisibility(View.GONE);
                 }
 
             }
         });
 
-    }
-
-    private void RegisterEmployee() {
-
-       progressBar.setVisibility(View.VISIBLE);
-        sEmail = email.getText().toString();
-        sPassword = password.getText().toString();
-        mAuth.createUserWithEmailAndPassword(sEmail,sPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    Toast.makeText(Add_employee.this,"Employee Registered successfully",Toast.LENGTH_LONG).show();
-                    progressBar.setVisibility(View.GONE);
-                    if(ContextCompat.checkSelfPermission(Add_employee.this, Manifest.permission.SEND_SMS)== PackageManager.PERMISSION_GRANTED) {
-                    SendSms();
-                    }else{
-                        ActivityCompat.requestPermissions(Add_employee.this,new String[]{Manifest.permission.SEND_SMS},100);
-                    }
-                        finish();
-                }else{
-                    Toast.makeText(Add_employee.this,"Employee registration not successful"+ Objects.requireNonNull(task.getException()).getMessage(),Toast.LENGTH_LONG).show();
-                    progressBar.setVisibility(View.GONE);
-                }
-            }
-        });
     }
 
     private void SendSms(){
-        sEmail = email.getText().toString();
+
         sName = name.getText().toString();
         sPhone = phone.getText().toString();
-        sPassword = password.getText().toString();
+
 
         SmsManager smsManager=SmsManager.getDefault();
-        smsManager.sendTextMessage(sPhone,null,"welcome "+sName+"\n"+"your Id is : "+sEmail+"\n"+"Your password is :"+sPassword,null,null);
+        smsManager.sendTextMessage(sPhone,null,"welcome to our organization , You can now use "+sPhone+" as your login number",null,null);
     }
 
     private void CheckIsEmpty() {
 
 
-        sEmail = email.getText().toString();
-        sPassword = password.getText().toString();
+
         sName = name.getText().toString();
         sRole = role.getText().toString();
         sBranch = branch.getText().toString();
         sSalary = salary.getText().toString();
         sPhone = phone.getText().toString();
 
-        if(sEmail.isEmpty()){
-            Toast.makeText(this, "enter Email id", Toast.LENGTH_SHORT).show();
-            email.setError("enter Email id");
-            email.requestFocus();
-        }else if(sPassword.isEmpty()) {
-            Toast.makeText(this, "enter password", Toast.LENGTH_SHORT).show();
-            password.setError("enter password");
-            password.requestFocus();
-        }
-        else if(sPassword.length()<6) {
-            Toast.makeText(this, "password must contain at least 6 characters", Toast.LENGTH_SHORT).show();
-            password.setError("password must contain at least 6 characters");
-            password.requestFocus();
-        }else if(sName.isEmpty()) {
+
+       if(sName.isEmpty()) {
             Toast.makeText(this, "enter Name", Toast.LENGTH_SHORT).show();
             name.setError("enter name");
             name.requestFocus();
@@ -172,7 +130,7 @@ addEmployee.setOnClickListener(v -> CheckIsEmpty());
             phone.setError("enter phone Number");
             phone.requestFocus();
         }else{
-            RegisterEmployee();
+            //RegisterEmployee();
 
             AddToDb();
         }

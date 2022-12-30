@@ -25,6 +25,12 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.concurrent.TimeUnit;
 
@@ -54,7 +60,28 @@ public class Login_Activity_Employee extends AppCompatActivity {
                 } else {
                     String number = phone.getText().toString();
                     bar.setVisibility(View.VISIBLE);
-                    sendverificationcode(number);
+
+                    DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+                    DatabaseReference userNameRef = rootRef.child("Registered Employees").child(number);
+                    ValueEventListener eventListener = new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            if(!dataSnapshot.exists()) {
+                                Toast.makeText(Login_Activity_Employee.this, "not a valid user ", Toast.LENGTH_SHORT).show();
+
+                            }else{
+                                sendverificationcode(number);
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                            Log.d(TAG, databaseError.getMessage()); //Don't ignore errors!
+                        }
+                    };
+                    userNameRef.addListenerForSingleValueEvent(eventListener);
+
+
                 }
             }
         });

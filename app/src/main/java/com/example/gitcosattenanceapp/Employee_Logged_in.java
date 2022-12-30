@@ -36,13 +36,15 @@ public class Employee_Logged_in extends AppCompatActivity {
 
 
         initViews();
+
+
+
        currentUser=mAuth.getCurrentUser();
         if(currentUser==null){
             Toast.makeText(this, "user not available", Toast.LENGTH_SHORT).show();
         }else{
             userVerified();
         }
-
     }
 
     private void userVerified() {

@@ -58,6 +58,20 @@
         app:layout_constraintTop_toBottomOf="@+id/location_input_for_attendance"
         app:layout_constraintVertical_bias="0.188" />
 
+    <Button
+        android:id="@+id/punch_in_out_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="punch out"
+        android:textColor="#2FBDC5"
+        android:background="@drawable/button_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/location_input_for_attendance"
+        app:layout_constraintVertical_bias="0.188"
+        android:visibility="gone"/>
+
     <TextView
         android:id="@+id/pst_att_to_emp_home"
         android:layout_width="wrap_content"
