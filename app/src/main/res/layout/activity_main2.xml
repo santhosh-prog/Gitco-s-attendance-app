@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:overScrollMode="never"
-    android:background="#21FFC107"
+    android:background="@drawable/bg1"
     tools:context=".MainActivity2">
 
     <LinearLayout

@@ -1,8 +1,6 @@
 package com.example.gitcosattenanceapp;
 
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class ReadWriteEmployeeDetails {
    public String  Employee_Name,  Employee_Role,  Employee_Branch,  Employee_Salary,  Employee_Phone , Owner;
